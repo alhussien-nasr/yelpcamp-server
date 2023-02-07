@@ -3,8 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 const dbUrl = process.env.DB_URL;
-console.log(dbUrl);
-mongoose.connect("mongodb://localhost:27017/camp");
+mongoose.connect(dbUrl);
 // "mongodb://localhost:27017/camp"
 let cors = require("cors");
 const campgroundRouter = require("./routes/campgrounds");
@@ -38,7 +37,7 @@ app.use(
     saveUninitialized: true,
     store: MongoStore.create({
       mongoUrl: "mongodb://localhost:27017/camp",
-      touchAfter: 24 * 3600, 
+      touchAfter: 24 * 3600,
     }),
     cookie: {
       httpOnly: true,
