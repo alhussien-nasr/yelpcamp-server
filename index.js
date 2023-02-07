@@ -23,7 +23,7 @@ db.once("open", () => {
   console.log("ok");
 });
 app.use(
-  cors({ origin: "https://yelpcamp-pesp.onrender.com", credentials: true })
+  cors({ origin: true, credentials: true })
 );
 app.use(cookieParser());
 app.use(express.json());
