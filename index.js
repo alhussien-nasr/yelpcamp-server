@@ -22,7 +22,9 @@ require("dotenv").config();
 db.once("open", () => {
   console.log("ok");
 });
-app.use(cors({ origin: true, credentials: true }));
+app.use(
+  cors({ origin: "https://yelpcamp-pesp.onrender.com/", credentials: true })
+);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
