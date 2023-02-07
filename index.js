@@ -60,4 +60,4 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/campgrounds", campgroundRouter);
 app.use("/campgrounds/:id/reviews", reviewRouter);
 app.use("/user", register);
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
