@@ -36,7 +36,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: "mongodb://localhost:27017/camp",
+      mongoUrl: dbUrl,
       touchAfter: 24 * 3600,
     }),
     cookie: {
