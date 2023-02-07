@@ -21,9 +21,6 @@ router
     validateCampGround,
     postCampground
   );
-// .post(upload.array("image"), (req, res) => {
-//   console.log(req.body, req.files);
-// });
 
 router
   .route("/:id")
