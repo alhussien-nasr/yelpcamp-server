@@ -19,9 +19,10 @@ const helmet = require("helmet");
 const db = mongoose.connection;
 const port = process.env.PORT || 8080;
 require("dotenv").config();
+// "http://localhost:8080",
 const allowOrgin = [
   "https://yelpcamp-pesp.onrender.com",
-  "http://localhost:8080",
+  "http://yelpcamp-pesp.onrender.com",
 ];
 db.once("open", () => {
   console.log("ok");
