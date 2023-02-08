@@ -4,7 +4,6 @@ const { validateCampGround, isLoggedIn, isAuthor } = require("../middleware");
 const multer = require("multer");
 const { storage, cloudinary } = require("../cloudinary");
 const upload = multer({ storage });
-const cors = require("cors");
 const {
   getCampground,
   getCampgroundById,
@@ -12,7 +11,6 @@ const {
   updateCampground,
   deleteCampground,
 } = require("../controllers/campgrounds");
-router.use(cors());
 
 router
   .route("/")

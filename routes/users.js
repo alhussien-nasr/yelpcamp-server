@@ -3,8 +3,6 @@ const router = express.Router();
 const User = require("../models/user");
 const passport = require("passport");
 const { logout, login } = require("../controllers/users");
-const cors = require("cors");
-router.use(cors());
 
 router.post("/", async (req, res, next) => {
   try {
