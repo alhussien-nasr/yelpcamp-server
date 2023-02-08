@@ -25,19 +25,19 @@ const allowOrgin = [
 db.once("open", () => {
   console.log("ok");
 });
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (allowOrgin.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error("not allowed by cors"));
-      }
-    },
-    credentials: true,
-    methodsL: [["GET", "POST", "DELETE", "PUT", "OPTIONS"]],
-  })
-);
+let corsOptions = {
+  origin: function (origin, callback) {
+    if (allowOrgin.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
