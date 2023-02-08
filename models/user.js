@@ -6,5 +6,4 @@ const Schema = new mongoose.Schema({
 });
 
 Schema.plugin(passportLocalMongoose);
-//
 module.exports = mongoose.model("User", Schema);
