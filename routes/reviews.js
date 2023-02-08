@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const { isLoggedIn, validateReview, isReviewAuthor } = require("../middleware");
 const { postReview, deleteReview } = require("../controllers/reviews");
+const cors = require("cors");
+router.use(cors());
 
 router.post(
   "/",
