@@ -26,7 +26,7 @@ module.exports.validateCampGround = (req, res, next) => {
   });
   if (error) {
     console.log(error);
-    res.send(error);
+    res.json(error);
   } else {
     next();
   }
