@@ -5,7 +5,7 @@ const { postReview, deleteReview } = require("../controllers/reviews");
 router.post(
   "/",
   isLoggedIn("you need to register to post review"),
-  validateReview,
+  // validateReview,
   postReview
 );
 
