@@ -1,7 +1,6 @@
 const Joi = require("joi");
 const Campground = require("./models/campground");
 const Review = require("./models/review");
-const { join } = require("./seeds/cities");
 
 const campgroundSchema = Joi.object({
   title: Joi.string().required(),
