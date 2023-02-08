@@ -98,7 +98,9 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/campgrounds", campgroundRouter);
 app.use("/campgrounds/:id/reviews", reviewRouter);
 app.use("/user", register);
-
+app.get(port,(req,res)=>{
+  res.send('working')
+})
 app.listen(port, () => {
   console.log("port", port);
 });
