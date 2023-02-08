@@ -59,7 +59,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
-// app.set("trust proxy", 1);
+app.set("trust proxy", 1);
 app.use(mongoSanitize());
 // app.use(helmet());
 
@@ -76,7 +76,7 @@ app.use(
       httpOnly: true,
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 1000 * 60 * 60 * 24 * 7,
-      secure: false,
+      secure: true,
     },
   })
 );
