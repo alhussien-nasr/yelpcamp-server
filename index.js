@@ -18,7 +18,6 @@ const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const db = mongoose.connection;
 const port = process.env.PORT || 8080;
-require("dotenv").config();
 // "http://localhost:8080",
 const allowOrgin = [
   "https://yelpcamp-pesp.onrender.com",
@@ -27,25 +26,38 @@ const allowOrgin = [
 db.once("open", () => {
   console.log("ok");
 });
-let corsOptions = {
-  origin: function (origin, callback) {
-    if (allowOrgin.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
 
-app.use(cors(corsOptions));
+// let corsOptions = {
+//   origin: function (origin, callback) {
+//     if (allowOrgin.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (allowOrgin.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.set("trust proxy", 1);
 app.use(mongoSanitize());
-// app.use(helmet());
+app.use(helmet());
 
 app.use(
   session({
@@ -75,6 +87,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/campgrounds", campgroundRouter);
 app.use("/campgrounds/:id/reviews", reviewRouter);
 app.use("/user", register);
+
 app.listen(port, () => {
   console.log("port", port);
 });
