@@ -68,6 +68,7 @@ app.use(
     secret: "thisshouldbeabettersecret!",
     resave: false,
     saveUninitialized: true,
+    name: "MyCoolWebAppCookieName",
     store: MongoStore.create({
       mongoUrl: dbUrl,
       touchAfter: 24 * 3600,
@@ -77,6 +78,7 @@ app.use(
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 1000 * 60 * 60 * 24 * 7,
       secure: true,
+      sameSite:'none'
     },
   })
 );
