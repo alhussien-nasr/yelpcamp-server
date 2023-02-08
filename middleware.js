@@ -34,7 +34,7 @@ module.exports.validateCampGround = (req, res, next) => {
 
 module.exports.isLoggedIn = (massage) => (req, res, next) => {
   if (!req.isAuthenticated()) {
-    return res.send(401).json({ error: massage });
+    return res.sendStatus(401).json({ error: massage });
   }
   next();
 };
