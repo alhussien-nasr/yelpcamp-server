@@ -22,8 +22,7 @@ const port = process.env.PORT || 8080;
 const allowOrgin = [
   "https://yelpcamp-pesp.onrender.com",
   "http://yelpcamp-pesp.onrender.com",
-  "http://localhost:8080",
-  "https://yelpcamp-api.onrender.com",
+  "http://localhost:3000",
 ];
 db.once("open", () => {
   console.log("ok");
