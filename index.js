@@ -18,7 +18,10 @@ const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const db = mongoose.connection;
 require("dotenv").config();
-const allowOrgin = ["https://yelpcamp-pesp.onrender.com"];
+const allowOrgin = [
+  "https://yelpcamp-pesp.onrender.com",
+  "http://localhost:8080",
+];
 db.once("open", () => {
   console.log("ok");
 });
