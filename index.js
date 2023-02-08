@@ -51,17 +51,10 @@ app.use(
     },
     credentials: true,
     optionsSuccessStatus: 200,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 app.use(cookieParser());
 app.use(express.json());
@@ -98,9 +91,9 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/campgrounds", campgroundRouter);
 app.use("/campgrounds/:id/reviews", reviewRouter);
 app.use("/user", register);
-app.get(port,(req,res)=>{
-  res.send('working')
-})
+app.get(port, (req, res) => {
+  res.send("working");
+});
 app.listen(port, () => {
   console.log("port", port);
 });
