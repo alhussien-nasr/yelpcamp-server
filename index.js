@@ -17,6 +17,7 @@ const MongoStore = require("connect-mongo");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const db = mongoose.connection;
+const port = process.env.PORT || 8080;
 require("dotenv").config();
 const allowOrgin = [
   "https://yelpcamp-pesp.onrender.com",
@@ -73,4 +74,6 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/campgrounds", campgroundRouter);
 app.use("/campgrounds/:id/reviews", reviewRouter);
 app.use("/user", register);
-app.listen(process.env.PORT || 8080);
+app.listen(port, () => {
+  console.log("port", port);
+});
