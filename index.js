@@ -18,12 +18,21 @@ const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const db = mongoose.connection;
 require("dotenv").config();
-
+const allowOrgin = ["https://yelpcamp-pesp.onrender.com"];
 db.once("open", () => {
   console.log("ok");
 });
 app.use(
-  cors({ origin: true, credentials: true })
+  cors({
+    origin: (origin, callback) => {
+      if (allowOrgin.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("not allowed by cors"));
+      }
+    },
+    credentials: true,
+  })
 );
 app.use(cookieParser());
 app.use(express.json());
