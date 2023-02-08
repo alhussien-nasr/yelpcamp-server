@@ -23,6 +23,7 @@ const allowOrgin = [
   "https://yelpcamp-pesp.onrender.com",
   "http://yelpcamp-pesp.onrender.com",
   "http://localhost:8080",
+  "https://yelpcamp-api.onrender.com",
 ];
 db.once("open", () => {
   console.log("ok");
