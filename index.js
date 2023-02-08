@@ -22,6 +22,7 @@ const port = process.env.PORT || 8080;
 const allowOrgin = [
   "https://yelpcamp-pesp.onrender.com",
   "http://yelpcamp-pesp.onrender.com",
+  "http://localhost:8080",
 ];
 db.once("open", () => {
   console.log("ok");
@@ -42,7 +43,7 @@ db.once("open", () => {
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (allowOrgin.indexOf(origin) !== -1) {
+      if (allowOrgin.indexOf(origin) !== -1 || !origin) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
