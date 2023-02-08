@@ -40,8 +40,6 @@ db.once("open", () => {
 //   optionsSuccessStatus: 200,
 // };
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -57,6 +55,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
 // app.set("trust proxy", 1);
@@ -91,7 +91,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use("/campgrounds", campgroundRouter);
 app.use("/campgrounds/:id/reviews", reviewRouter);
 app.use("/user", register);
-app.get(port, (req, res) => {
+app.get("/", (req, res) => {
   res.send("working");
 });
 app.listen(port, () => {
