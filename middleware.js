@@ -33,6 +33,7 @@ module.exports.validateCampGround = (req, res, next) => {
 };
 
 module.exports.isLoggedIn = (massage) => (req, res, next) => {
+  console.log("working");
   if (!req.isAuthenticated()) {
     return res.sendStatus(401).json({ error: massage });
   }
@@ -40,6 +41,7 @@ module.exports.isLoggedIn = (massage) => (req, res, next) => {
 };
 
 module.exports.isAuthor = async (req, res, next) => {
+  console.log("working");
   const { id } = req.params;
   const camp = await Campground.findById(id);
   if (!camp.author.equals(req.user._id)) {
@@ -50,6 +52,7 @@ module.exports.isAuthor = async (req, res, next) => {
 };
 
 module.exports.validateReview = (req, res, next) => {
+  console.log("working");
   const { body } = req;
   const { error } = reviewSchema.validate(body);
   if (error) {
@@ -62,6 +65,7 @@ module.exports.validateReview = (req, res, next) => {
 
 module.exports.isReviewAuthor = async (req, res, next) => {
   const { reviewId } = req.params;
+  console.log("working");
   const review = await Review.findById(reviewId);
   if (!review.author.equals(req.user._id)) {
     res.json("unAuthorized");

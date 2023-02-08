@@ -40,6 +40,8 @@ db.once("open", () => {
 //   optionsSuccessStatus: 200,
 // };
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -57,8 +59,6 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 // app.set("trust proxy", 1);
 app.use(mongoSanitize());
 // app.use(helmet());
