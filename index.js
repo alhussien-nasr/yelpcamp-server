@@ -22,19 +22,19 @@ const allowOrgin = ["https://yelpcamp-pesp.onrender.com"];
 db.once("open", () => {
   console.log("ok");
 });
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (allowOrgin.indexOf(origin) !== -1 || !origin) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("not allowed by cors"));
-//       }
-//     },
-//     credentials: true,
-//   })
-// );
-app.use(cors())
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (allowOrgin.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("not allowed by cors"));
+      }
+    },
+    credentials: true,
+    methodsL: [["GET", "POST", "DELETE", "PUT", "OPTIONS"]],
+  })
+);
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
