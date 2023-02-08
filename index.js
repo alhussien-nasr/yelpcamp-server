@@ -40,7 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set("trust proxy", 1);
 app.use(mongoSanitize());
-app.use(helmet());
+// app.use(helmet());
 
 app.use(
   session({
