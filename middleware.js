@@ -36,7 +36,7 @@ module.exports.isLoggedIn = (massage) => (req, res, next) => {
   console.log("working");
   if (!req.isAuthenticated()) {
     console.log("no auth", massage);
-    return res.sendStatus(401).json({ error: massage });
+    return res.json({ error: massage });
   }
   next();
 };
