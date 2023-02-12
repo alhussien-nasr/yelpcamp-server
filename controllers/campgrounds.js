@@ -1,5 +1,6 @@
 const Campground = require("../models/campground");
 const { cloudinary } = require("../cloudinary");
+const { join } = require("../seeds/cities");
 
 module.exports.getCampground = async (req, res) => {
   const data = await Campground.find();
@@ -25,10 +26,6 @@ module.exports.getCampgroundById = async (req, res) => {
 };
 
 module.exports.postCampground = async (req, res) => {
-  // req.files.map((f) => ({
-  //   url: f.path,
-  //   filename: f.filename,
-  // }));
   try {
     const body = JSON.parse(req.body.data);
     const createdCamp = new Campground(body);
@@ -47,6 +44,7 @@ module.exports.postCampground = async (req, res) => {
 
 module.exports.updateCampground = async (req, res) => {
   console.log(req.files, "file");
+  console.log(req.body, "body");
   try {
     const { id } = req.params;
     const data = await JSON.parse(req.body.data);

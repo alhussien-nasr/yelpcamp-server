@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const dbUrl = process.env.DB_URL;
 mongoose.connect(dbUrl);
-// "mongodb://localhost:27017/camp"
+// process.env.DB_URL
+// mongodb://localhost:27017/camp
 let cors = require("cors");
 const campgroundRouter = require("./routes/campgrounds");
 const reviewRouter = require("./routes/reviews");
@@ -28,17 +29,8 @@ db.once("open", () => {
   console.log("ok");
 });
 
-// let corsOptions = {
-//   origin: function (origin, callback) {
-//     if (allowOrgin.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   },
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
@@ -55,9 +47,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 app.use(cookieParser());
 app.set("trust proxy", 1);
 app.use(mongoSanitize());
@@ -78,7 +67,6 @@ app.use(
       expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
       maxAge: 1000 * 60 * 60 * 24 * 7,
       secure: true,
-      sameSite:'none'
     },
   })
 );

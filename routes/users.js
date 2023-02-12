@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../models/user");
 const passport = require("passport");
 const { logout, login } = require("../controllers/users");
+const { isLoggedIn } = require("../middleware");
 
 router.post("/", async (req, res, next) => {
   try {
@@ -18,15 +19,18 @@ router.post("/", async (req, res, next) => {
       res.json({ username, email, _id: user._id });
     });
   } catch (error) {
-    console.log(error, "eeeerrr");
+    res.status(400).json(error);
   }
 });
 
+router.get("/", isLoggedIn("you need to login"), (req, res) => {
+  res.status(200).json(req.user);
+});
 router.post(
   "/login",
-  passport.authenticate("local", { failureMessage: "error" }),
+  passport.authenticate("local", { failureMessage: false }),
   login
 );
 
-router.get("/logout", logout);
+router.post("/logout", logout);
 module.exports = router;
